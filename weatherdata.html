@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather data</title>
+</head>
+<body>
+    <h1>weather data</h1>
+    <button onclick="fetchweatherdata()">click to get weather data</button>
+    <div id="get-data"></div>
+
+    <script>
+        async function fetchweatherdata(){
+            const data = document.getElementById('get-data');
+            data.innerText = "fetching data.....";
+            try{
+            const apiKey = 'YOUR_API_KEY';
+            const cityName = 'YOUR_CITY_NAME'; 
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+            const response = await fetch(apiUrl);
+            const weather_data = await response.json(); 
+            data.innerText = weather_data.value;
+            
+            const temperature = weatherData.main.temp;
+            const description = weatherData.weather[0].description;
+
+            data.innerText = `Temperature: ${temperature}°C, Description: ${description}`;
+
+            }
+            catch(error){
+                data.innerText = "oops there is an error";
+                console.error(error)
+            }
+        }
+
+
+    </script>
+</body>
