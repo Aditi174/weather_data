@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>weather data</title>
+    <title>Weather Data</title>
 </head>
 <body>
-    <h1>weather data</h1>
-    <button onclick="fetchweatherdata()">click to get weather data</button>
+    <h1>Weather Data</h1>
+    <button onclick="fetchWeatherData()">Click to Get Weather Data</button>
     <div id="get-data"></div>
 
     <script>
-        async function fetchweatherdata(){
+        async function fetchWeatherData() {
             const data = document.getElementById('get-data');
-            data.innerText = "fetching data.....";
-            try{
-            const apiKey = 'YOUR_API_KEY';
-            const cityName = 'YOUR_CITY_NAME'; 
-            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
-            const response = await fetch(apiUrl);
-            const weather_data = await response.json(); 
-            data.innerText = weather_data.value;
-            
-            const temperature = weatherData.main.temp;
-            const description = weatherData.weather[0].description;
+            data.innerText = "Fetching data.....";
+            try {
+                const apiKey = 'c75662ab24450b4e7e88a5bba0af5a93';
+                const cityName = 'PUNE'; 
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+                const response = await fetch(apiUrl);
+                const weatherData = await response.json(); 
 
-            data.innerText = `Temperature: ${temperature}°C, Description: ${description}`;
+                const temperature = weatherData.main.temp;
+                const description = weatherData.weather[0].description;
 
-            }
-            catch(error){
-                data.innerText = "oops there is an error";
-                console.error(error)
+                data.innerText = `Temperature: ${temperature}°C, Description: ${description}`;
+            } catch (error) {
+                data.innerText = "Oops, there is an error";
+                console.error(error);
             }
         }
-
-
     </script>
 </body>
+</html>
